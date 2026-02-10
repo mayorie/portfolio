@@ -13,9 +13,32 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  name      String?
+model Project {
+  id Int @id @default(autoincrement())
+  name String
+  slug String @unique
+  descriptions Description[] @relation("ProjectDescriptions")
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  } 
+  
+  model Description {
+    id Int @id @default(autoincrement())
+    content String
+    project Project @relation("ProjectDescriptions", fields: [projectId], references: [id], onDelete: Cascade)
+    projectId Int
+    images Image[]
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now())
+  } 
+  
+  
+  
+  model Image {
+    id Int @id @default(autoincrement())
+    url String
+    alt String?
+    description Description @relation(fields: [descriptionId], references: [id], onDelete: Cascade)
+    descriptionId Int 
+    createdAt DateTime @default(now()) 
 }
