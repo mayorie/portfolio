@@ -15,6 +15,11 @@ async function main() {
     data: {
       name: "Application de statistiques D'un serveur minecraft UHC World.",
       slug: "App-stats-UHC-World",
+
+      // Champs obligatoires
+      startedAt: new Date("2023-06-01"),
+      endedOrUpdatedAt: new Date(), // date actuelle
+      
       descriptions: {
         create: [
           {
