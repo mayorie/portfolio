@@ -18,8 +18,8 @@ model Project {
   name String
   slug String @unique // Unique slug for clear URL
   descriptions Description[] @relation("ProjectDescriptions") //0 : c'est la short description
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  startedAt DateTime
+  endedOrUpdatedAt DateTime
   } 
   
   model Description {
@@ -28,8 +28,6 @@ model Project {
     project Project @relation("ProjectDescriptions", fields: [projectId], references: [id], onDelete: Cascade)
     projectId Int
     images Image[]
-    createdAt DateTime @default(now())
-    updatedAt DateTime @default(now())
   } 
   
   
