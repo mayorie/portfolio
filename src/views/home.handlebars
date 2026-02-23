@@ -1,0 +1,82 @@
+<h1>Hello World 👋</h1>
+
+<div class="carousel">
+  <button onclick="prevSlide()">⬅</button>
+
+  <div class="carousel-container">
+    {{#each projects}}
+      <div class="slide">
+        <h2>{{this.name}}</h2>
+
+        {{#if this.descriptions.[0].images.[0]}}
+          <img 
+            src="{{this.descriptions.[0].images.[0].url}}" 
+            alt="{{this.descriptions.[0].images.[0].alt}}" 
+            class="project-image"
+          >
+        {{/if}}
+
+        <p>{{this.descriptions.[0].content}}</p>
+      </div>
+    {{/each}}
+  </div>
+
+  <button onclick="nextSlide()">➡</button>
+</div>
+
+<style>
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.carousel-container {
+  width: 500px;
+  overflow: hidden;
+  position: relative;
+}
+
+.slide {
+  display: none;
+  text-align: center;
+}
+
+.slide.active {
+  display: block;
+}
+
+.project-image {
+  max-width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 15px 0;
+}
+</style>
+
+<script>
+let currentIndex = 0
+const slides = document.querySelectorAll('.slide')
+
+function showSlide(index) {
+  slides.forEach(slide => slide.classList.remove('active'))
+  slides[index].classList.add('active')
+}
+
+function nextSlide() {
+  currentIndex = (currentIndex + 1) % slides.length
+  showSlide(currentIndex)
+}
+
+function prevSlide() {
+  currentIndex = (currentIndex - 1 + slides.length) % slides.length
+  showSlide(currentIndex)
+}
+
+if (slides.length > 0) {
+  showSlide(currentIndex)
+}
+</script>
