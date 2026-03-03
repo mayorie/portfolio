@@ -30,6 +30,7 @@ model Project {
   
   model Description {
     id Int @id @default(autoincrement())
+    mise_en_page Int //comment sera affiché les descriptions dans la description de projet
     content String
     project Project @relation("ProjectDescriptions", fields: [projectId], references: [id], onDelete: Cascade)
     projectId Int

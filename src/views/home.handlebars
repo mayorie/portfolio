@@ -1,27 +1,40 @@
-<h1>Hello World 👋</h1>
 
-<div class="carousel">
-  <button onclick="prevSlide()">⬅</button>
-
-  <div class="carousel-container">
-    {{#each projects}}
-      <div class="slide">
-        <h2>{{this.name}}</h2>
-
-        {{#if this.descriptions.[0].images.[0]}}
-          <img 
-            src="{{this.descriptions.[0].images.[0].url}}" 
-            alt="{{this.descriptions.[0].images.[0].alt}}" 
-            class="project-image"
-          >
-        {{/if}}
-
-        <p>{{this.descriptions.[0].content}}</p>
-      </div>
-    {{/each}}
+<div class="carousel-band">
+  <div class="carousel">
+    <div class="carousel-container">
+      {{#each projects}}
+          <div class="slide">
+              <div class="slide-text">
+                  <h2 class="slide-title">
+                      <a href="/project/{{this.slug}}">
+                          {{this.name}}
+                      </a>
+                  </h2>
+                  <p class="slide-description">{{this.descriptions.[0].content}}</p>
+              </div>
+              {{#if this.descriptions.[0].images.[0]}}
+                  <div class="slide-image-wrapper">
+                      <img 
+                          src="{{this.descriptions.[0].images.[0].url}}" 
+                          alt="{{this.descriptions.[0].images.[0].alt}}" 
+                          class="project-image"
+                      >
+                  </div>
+              {{/if}}
+          </div>
+      {{/each}}
+    </div>
   </div>
 
-  <button onclick="nextSlide()">➡</button>
+  <div class="carousel-controls">
+    <button class="control prev" onclick="prevSlide()">⬅</button>
+    <div class="carousel-indicators">
+      {{#each projects}}
+        <div class="indicator" onclick="goToSlide({{@index}})"></div>
+      {{/each}}
+    </div>
+    <button class="control next" onclick="nextSlide()">➡</button>
+  </div>
 </div>
 
 <style>
@@ -42,28 +55,122 @@
 .slide {
   display: none;
   text-align: center;
+  /* establish flex container when visible */
 }
 
 .slide.active {
-  display: block;
+  display: flex;
+  align-items: stretch;
+}
+
+.slide-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.slide-title {
+  margin: 0;
+}
+
+.slide-description {
+  margin-top: 0px; /* 15px below title */
+}
+
+.slide-image-wrapper {
+  flex: 1;
+  overflow: hidden;
 }
 
 .project-image {
-  max-width: 100%;
-  height: 250px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 10px;
-  margin: 15px 0;
+  border-radius: 10px 0 0 10px;
 }
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 5px;
+}
+
+.carousel-indicators .indicator {
+  width: 16px;
+  height: 16px;
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+.carousel-indicators .indicator.active {
+  background-color: #333;
+}
+
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.carousel-controls .control {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.carousel-controls .control.prev {
+  margin-right: 10px;
+}
+
+.carousel-controls .control.next {
+  margin-left: 10px;
+}
+
+/* new band around carousel + controls */
+.carousel-band {
+  background: #f0f0f0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* slide content block */
+.slide {
+  display: none;
+  text-align: center;
+  /* establish flex container when visible */
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+}
+
 </style>
 
 <script>
 let currentIndex = 0
 const slides = document.querySelectorAll('.slide')
+const indicators = document.querySelectorAll('.indicator')
+
+function updateIndicators(index) {
+  indicators.forEach(ind => ind.classList.remove('active'))
+  if (indicators[index]) {
+    indicators[index].classList.add('active')
+  }
+}
 
 function showSlide(index) {
   slides.forEach(slide => slide.classList.remove('active'))
   slides[index].classList.add('active')
+  updateIndicators(index)
 }
 
 function nextSlide() {
@@ -74,6 +181,13 @@ function nextSlide() {
 function prevSlide() {
   currentIndex = (currentIndex - 1 + slides.length) % slides.length
   showSlide(currentIndex)
+}
+
+function goToSlide(index) {
+  if (index >= 0 && index < slides.length) {
+    currentIndex = index
+    showSlide(currentIndex)
+  }
 }
 
 if (slides.length > 0) {

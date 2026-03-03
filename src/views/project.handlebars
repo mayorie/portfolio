@@ -1,0 +1,32 @@
+<h1>{{project.name}}</h1>
+
+<p>
+  Début : {{project.startedAt}} <br>
+  Dernière mise à jour : {{project.endedOrUpdatedAt}}
+</p>
+
+{{#each project.descriptions}}
+
+  {{#if (eq this.mise_en_page 0)}}
+    {{> description-0 this}}
+  {{/if}}
+
+  {{#if (eq this.mise_en_page 1)}}
+    {{> description-1 this}}
+  {{/if}}
+
+{{/each}}
+
+<a href="/">⬅ Retour</a>
+
+<style>
+.description-block {
+  margin-bottom: 30px;
+}
+
+.project-image {
+  max-width: 600px;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+</style>

@@ -7,9 +7,18 @@ const prisma = new PrismaClient()
 
 const app = express()
 
-app.use(express.static('src/public'))//à mettre avant les routes pour que les fichiers statiques soient servis correctement
+app.use(express.static('src/public'))
 
-app.engine('handlebars', engine())
+app.engine(
+  'handlebars',
+  engine({
+    helpers: {
+      eq: (a, b) => a === b
+    },
+    partialsDir: path.join(__dirname, 'src', 'views', 'descriptions-layout')
+  })
+)
+
 app.set('view engine', 'handlebars')
 
 // 👇 Chemin ABSOLU vers src/views
@@ -32,6 +41,23 @@ app.get('/', async (req, res) => {
   res.render('home', { projects })
 })
 
+// Route pour afficher les détails d'un projet
+app.get('/project/:slug', async (req, res) => {
+  const { slug } = req.params
+
+  const project = await prisma.project.findUnique({
+    where: { slug },
+    include: {
+      descriptions: {
+        include: {
+          images: true
+        }
+      }
+    }
+  })
+
+  res.render('project', { project })
+})
 
 const PORT = 3000
 app.listen(PORT, () => {

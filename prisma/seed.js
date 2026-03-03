@@ -24,6 +24,7 @@ async function main() {
         create: [
           {
             content: "Application de récupération et traitement des logs minecraft d'un joueur pour les afficher de manière ergonomique.",
+            mise_en_page: 1,
             images: {
               create: [
                 {
@@ -39,6 +40,7 @@ async function main() {
           },
           {
             content: "Description longue du projet avec détails techniques.",
+            mise_en_page: 1,
             images: {
               create: [
                 {
@@ -67,6 +69,7 @@ async function main() {
         create: [
           {
             content: "Jeu vidéo basé sur un déplacement à la sousris, le gameplay est basé sur différentes énigmes.",
+            mise_en_page: 1,
             images: {
               create: [
                 {
@@ -78,6 +81,7 @@ async function main() {
           },
           {
             content: "Description longue du projet avec détails techniques.",
+            mise_en_page: 0,
             images: {
               create: [
                 {
