@@ -6,15 +6,16 @@
 </p>
 
 {{#each project.descriptions}}
+  {{!-- skip the very first description --}}
+  {{#unless @first}}
+    {{#if (eq this.mise_en_page 0)}}
+      {{> description-0 this}}
+    {{/if}}
 
-  {{#if (eq this.mise_en_page 0)}}
-    {{> description-0 this}}
-  {{/if}}
-
-  {{#if (eq this.mise_en_page 1)}}
-    {{> description-1 this}}
-  {{/if}}
-
+    {{#if (eq this.mise_en_page 1)}}
+      {{> description-1 this}}
+    {{/if}}
+  {{/unless}}
 {{/each}}
 
 <a href="/">⬅ Retour</a>
