@@ -47,14 +47,14 @@
 }
 
 .carousel-container {
-  width: 500px;
+  width: 1000px;
   overflow: hidden;
   position: relative;
 }
 
 .slide {
   display: none;
-  text-align: center;
+  /* no global text-align here, children will control alignment */
   /* establish flex container when visible */
 }
 
@@ -67,8 +67,11 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* keep title and description closer together */
+  justify-content: flex-start;
+  gap: 30px; /* space between title and description */
   padding: 20px;
+  text-align: left; /* ensure text is left-aligned */
 }
 
 .slide-title {
@@ -76,19 +79,29 @@
 }
 
 .slide-description {
-  margin-top: 0px; /* 15px below title */
+  /* pull the description up a bit if needed */
+  position: relative;
+  top: -10px;
+  margin: 0;
+  text-indent: 1.5em; /* add paragraph indent */
+  /* alternatively you could use padding-left */
 }
 
 .slide-image-wrapper {
   flex: 1;
   overflow: hidden;
+  /* add space inside so the image doesn't touch the slide border */
+  padding: 15px;
+  box-sizing: border-box; /* ensure padding is included in flex sizing */
 }
 
 .project-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 10px 0 0 10px;
+  border-radius: 10px; /* round all four corners */
+  /* if padding is added to wrapper we may need to remove the rounding on the inner image
+     or keep same to avoid clipping. adjust as necessary. */
 }
 
 .carousel-indicators {
