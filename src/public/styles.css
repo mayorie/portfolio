@@ -55,8 +55,6 @@ body {
 
 .slide {
   display: none;
-  /* no global text-align here, children will control alignment */
-  /* establish flex container when visible */
 }
 
 .slide.active {
@@ -68,11 +66,10 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  /* keep title and description closer together */
   justify-content: flex-start;
-  gap: 30px; /* space between title and description */
+  gap: 30px; 
   padding: 20px;
-  text-align: left; /* ensure text is left-aligned */
+  text-align: left;
 }
 
 .slide-title {
@@ -80,12 +77,10 @@ body {
 }
 
 .slide-description {
-  /* pull the description up a bit if needed */
   position: relative;
   top: -10px;
   margin: 0;
-  text-indent: 1.5em; /* add paragraph indent */
-  /* alternatively you could use padding-left */
+  text-indent: 1.5em;
 }
 
 .slide-image-wrapper {
