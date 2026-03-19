@@ -1,4 +1,15 @@
 
+<!-- presentation + mini description : -->
+<h1>Mahé Sacha, professionnel en développement et gestion de données dans les applications et les sites web.</h1>
+
+<p>J'ai <span id="age">...</span> ans, je suis un programmeur junior en développement application et web,</p>
+<p>je me suis pris de passion pour la gestion de données dans ces domaines.</p>
+
+
+<!-- carroussel de projets : -->
+
+<h2>Mes projets : </h2>
+
 <div class="carousel-band">
   <div class="carousel">
     <div class="carousel-container">
@@ -11,6 +22,21 @@
                       </a>
                   </h2>
                   <p class="slide-description">{{this.descriptions.[0].content}}</p>
+                  <div class="slide-note-box">
+                    <p class="slide-note-text">
+                      Compétences utilisées :
+                      <br>
+                      {{#if this.competences.length}}
+                          <span class="competence-badges">
+                            {{#each this.competences}}
+                              <span class="competence-badge">{{this.name}}</span>{{#unless @last}}|||{{/unless}}
+                            {{/each}}
+                          </span>
+                      {{else}}
+                        <em>aucune</em>
+                      {{/if}}
+                    </p>
+                  </div>
               </div>
               {{#if this.descriptions.[0].images.[0]}}
                   <div class="slide-image-wrapper">
@@ -37,6 +63,27 @@
   </div>
 </div>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 <!-- carousel-specific styles are now included in /styles.css -->
 <!-- carousel behaviour moved to external script -->
 <script src="/carousel.js" defer></script>
+<script>
+  // calcule l'âge à partir de la date de naissance (août 2006)
+  const birthDate = new Date(2006, 7, 1); // mois 7 = août (0-indexé)
+  const now = new Date();
+  let age = now.getFullYear() - birthDate.getFullYear();
+  const monthDiff = now.getMonth() - birthDate.getMonth();
+  if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+    age -= 1;
+  }
+  const ageEl = document.getElementById('age');
+  if (ageEl) {
+    ageEl.textContent = age;
+  }
+</script>

@@ -23,11 +23,18 @@ model Project {
   id Int @id @default(autoincrement())
   name String
   slug String @unique // Unique slug for clear URL
+  competences competences[] @relation("ProjectCompetences")
   descriptions Description[] @relation("ProjectDescriptions") //0 : c'est la short description
   startedAt DateTime
   endedOrUpdatedAt DateTime
   } 
   
+model competences {
+    id Int @id @default(autoincrement())
+    name String
+    projects Project[] @relation("ProjectCompetences")
+  }
+
   model Description {
     id Int @id @default(autoincrement())
     mise_en_page Int //comment sera affiché les descriptions dans la description de projet

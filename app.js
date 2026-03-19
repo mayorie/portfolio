@@ -27,6 +27,9 @@ app.set('views', path.join(__dirname, 'src', 'views'))
 app.get('/', async (req, res) => {
   const projects = await prisma.project.findMany({
     include: {
+      competences: {
+        select: { name: true }
+      },
       descriptions: {
         include: {
           images: true

@@ -25,9 +25,38 @@ async function main() {
   await prisma.image.deleteMany()
   await prisma.description.deleteMany()
   await prisma.project.deleteMany()
+  await prisma.competences.deleteMany()
 
   // Liste des noms créés pendant le seed (pour l'affichage final)
   const createdNames = []
+
+  //listing des compétences
+  competencesData = [
+    { name: "JavaScript" },
+    { name: "C++" },
+    { name: "Unity" },
+    { name: "Unreal Engine" },
+    { name: "gestion de données" },
+    { name: "base de données" },
+    { name: "prisma" },
+    { name: "express" },
+    { name: "handlebars" },
+    { name: "gestion de projet" },
+    { name: "anglais" },
+    { name: "handlebars" },
+    { name: "REGEX" },
+    { name: "SQLite" },
+    { name: "Git/GitHub" },
+    { name: "DevObjet" },
+    { name: "multithreading" },
+    { name: "C##" },
+    { name: "méthode SOLIDE" },
+  ]
+
+  // Création des compétences
+  const competences = await Promise.all(
+    competencesData.map((competenceData) => prisma.competences.create({ data: competenceData }))
+  )
 
   // Création d'un projet avec descriptions + images
   const project1Data = {
@@ -38,10 +67,26 @@ async function main() {
       startedAt: new Date("2023-06-01"),
       endedOrUpdatedAt: new Date(), // date actuelle
 
+      //compétences associées
+      competences: {
+        connect: [
+          { id: competences.find(c => c.name === "C++").id },
+          { id: competences.find(c => c.name === "gestion de données").id },
+          { id: competences.find(c => c.name === "gestion de projet").id },
+          { id: competences.find(c => c.name === "REGEX").id },
+          { id: competences.find(c => c.name === "SQLite").id },
+          { id: competences.find(c => c.name === "Git/GitHub").id },
+          { id: competences.find(c => c.name === "DevObjet").id },
+          { id: competences.find(c => c.name === "multithreading").id },
+          { id: competences.find(c => c.name === "méthode SOLIDE").id },
+        ]
+      },
+
       descriptions: {
         create: [
           {
-            content: "Application de récupération et traitement des logs minecraft d'un joueur pour les afficher de manière ergonomique.",
+            content: 
+            "Application de récupération et traitement des logs minecraft d'un joueur pour les afficher de manière ergonomique.",
             mise_en_page: 1,
             images: {
               create: [
@@ -84,6 +129,17 @@ async function main() {
       // Champs obligatoires
       startedAt: new Date("2025-11-01"),
       endedOrUpdatedAt: new Date(), // date actuelle
+
+      //compétences associées
+      competences: {
+        connect: [
+          { id: competences.find(c => c.name === "C##").id },
+          { id: competences.find(c => c.name === "Unity").id },
+          { id: competences.find(c => c.name === "gestion de projet").id },
+          { id: competences.find(c => c.name === "anglais").id },
+          { id: competences.find(c => c.name === "méthode SOLIDE").id }
+        ]
+      },
 
       descriptions: {
         create: [
