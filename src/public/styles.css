@@ -1,3 +1,120 @@
+.cv-item-competence {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  margin-bottom: 18px;
+}
+
+.cv-item-competence-info {
+  min-width: 200px;
+  max-width: 300px;
+  flex: 0 0 220px;
+}
+
+/* Empiler les cv-item-flex à droite */
+.cv-item-competence {
+  flex-direction: row;
+}
+.cv-item-competence > .cv-item-competence-info + div {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+/* CV virtuel item flex layout */
+.cv-item-flex {
+  display: flex;
+  align-items: stretch;
+  gap: 22px;
+  background: #f8fafc;
+  border: 2px solid #d1d5db;
+  border-radius: 14px;
+  padding: 22px 28px 18px 28px;
+  margin: 5px 0;
+  box-shadow: 0 2px 12px #0001;
+  width: 94%;
+}
+
+.cv-item-competence-list {
+  width: 100%;
+}
+
+
+
+  .cv-item-photo {
+    display: block;
+    width: 50px;
+    height: 50px;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    background: #f3f4f6;
+    border: 2px solid #d1d5db;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #0001;
+    flex-shrink: 0;
+    margin-right: 18px;
+    padding: 6px;
+  }
+  
+
+.cv-item-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 1;
+}
+
+.cv-item-title {
+  margin: 0 0 8px 0;
+  font-size: 1.15em;
+  font-weight: bold;
+}
+
+.cv-item-desc {
+  margin: 0;
+  color: #333;
+  font-size: 1em;
+}
+/* CV virtuel sections */
+.box.CV-virtuel-section {
+  background: #f8fafc;
+  border: 2px solid #d1d5db;
+  border-radius: 14px;
+  padding: 22px 28px 18px 28px;
+  margin: 24px 0;
+  box-shadow: 0 2px 12px #0001;
+}
+
+.cv-item-competence {
+  background: #e0e7ef;
+  border: 2px dashed #a3a3a3;
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin: 18px 0 0 0;
+  box-shadow: 0 1px 6px #0001;
+}
+
+.box.CV-virtuel-content {
+  background: #eef2f7;
+  border: 1.2px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-top: 14px;
+  min-height: 40px;
+}
+
+/* Compétence item horizontal layout */
+.cv-item-competence {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  margin-bottom: 18px;
+}
+
+.cv-item-competence-info {
+  min-width: 200px;
+  max-width: 300px;
+  flex: 0 0 220px;
+}
 /* Global styles for portfolio */
 
 header.site-header {
