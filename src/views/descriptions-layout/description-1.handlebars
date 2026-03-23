@@ -1,18 +1,16 @@
-<div class="description-block second-description">
-  <h1>describ 1</h1>
-  <p>{{content}}</p>
+<article class="description-block description-1">
+  <div class="description-grid">
+    <div class="description-main">
+      <p class="description-text">{{content}}</p>
+    </div>
 
-  <div class="images-row">
-    {{#each images}}
-      <img 
-        src="{{url}}" 
-        alt="{{alt}}" 
-        class="project-image"
-      >
-    {{/each}}
-
-    </br></br></br>
-    
+    <aside class="description-aside">
+      {{#each images}}
+        <figure class="description-image-item">
+          <img src="{{url}}" alt="{{alt}}" class="project-image" />
+          <figcaption>{{alt}}</figcaption>
+        </figure>
+      {{/each}}
+    </aside>
   </div>
-
-</div>
+</article>

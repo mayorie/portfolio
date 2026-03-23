@@ -1,33 +1,49 @@
-<h1>{{project.name}}</h1>
+<div class="project-page">
+  <header class="project-header">
+    <h1 class="project-title">{{project.name}}</h1>
+    <div class="project-meta">
+      <span>Début le : <strong id="start-date">{{project.startedAt}}</strong></span>
+      <span>Dernière mise à jour le : <strong id="end-date">{{project.endedOrUpdatedAt}}</strong></span>
+    </div>
+  </header>
 
-<p>
-  Début : {{project.startedAt}} <br>
-  Dernière mise à jour : {{project.endedOrUpdatedAt}}
-</p>
+  <section class="project-descriptions">
+    {{#each project.descriptions}}
+      {{!-- skip the very first description --}}
+      {{#unless @first}}
+        {{#if (eq this.mise_en_page 0)}}
+          {{> description-0 this}}
+        {{/if}}
 
-{{#each project.descriptions}}
-  {{!-- skip the very first description --}}
-  {{#unless @first}}
-    {{#if (eq this.mise_en_page 0)}}
-      {{> description-0 this}}
-    {{/if}}
+        {{#if (eq this.mise_en_page 1)}}
+          {{> description-1 this}}
+        {{/if}}
+      {{/unless}}
+    {{/each}}
+  </section>
 
-    {{#if (eq this.mise_en_page 1)}}
-      {{> description-1 this}}
-    {{/if}}
-  {{/unless}}
-{{/each}}
+  <div class="project-back">
+    <a href="/">⬅ Retour à l'accueil</a>
+  </div>
+</div>
 
-<a href="/">⬅ Retour</a>
+<script>
+  // Formater les dates en JJ/MM/AAAA
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
 
-<style>
-.description-block {
-  margin-bottom: 30px;
-}
-
-.project-image {
-  max-width: 600px;
-  margin-top: 10px;
-  border-radius: 10px;
-}
-</style>
+  // Appliquer le formatage
+  const startDateEl = document.getElementById('start-date');
+  const endDateEl = document.getElementById('end-date');
+  if (startDateEl && startDateEl.textContent) {
+    startDateEl.textContent = formatDate(startDateEl.textContent);
+  }
+  if (endDateEl && endDateEl.textContent) {
+    endDateEl.textContent = formatDate(endDateEl.textContent);
+  }
+</script>

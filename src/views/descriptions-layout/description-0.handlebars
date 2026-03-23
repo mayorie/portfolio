@@ -1,15 +1,14 @@
-<div class="description-block first-description">
-  <h1>describ 0</h1>
-  <p>{{content}}</p>
+<article class="description-block description-0">
+  <div class="description-top">
+    <p class="description-text">{{content}}</p>
+  </div>
 
-  {{#each images}}
-    <img 
-      src="{{url}}" 
-      alt="{{alt}}" 
-      class="project-image"
-    >
-  {{/each}}
-
-  </br></br></br>
-
-</div>
+  <div class="description-images-row">
+    {{#each images}}
+      <figure class="description-image-item">
+        <img src="{{url}}" alt="{{alt}}" class="project-image" />
+        <figcaption>{{alt}}</figcaption>
+      </figure>
+    {{/each}}
+  </div>
+</article>

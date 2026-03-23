@@ -98,18 +98,52 @@ async function main() {
             }
           },
           {
-            content: "Description longue du projet avec détails techniques.",
+            content: "Objectif du mode de jeu : c'est un mode de jeu de type mensonge et trahison sur minecraft. Le jeu est basé sur le fameux jeu de société, le loup garou de thierces lieux.",
             mise_en_page: 1,
             images: {
               create: [
                 {
-                  url: "https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630",
-                  alt: "a changer"
+                  url: "/images/projects/proj_uhcworld/Simple Villageois.png",
+                  alt: "Logo camp villageois LG UHC"
                 },
                 {
-                  url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTM7Zt4dBvLOE_KsfGtzkvr0-Yn8jRR98jM_g&s",
-                  alt: "Logo mode de jeu LG UHC"
-                }
+                  url: "/images/projects/proj_uhcworld/Loup-Garou.png",
+                  alt: "Logo camp loup garou LG UHC"
+                },
+                {
+                  url: "/images/projects/proj_uhcworld/Assassin.png",
+                  alt: "Logo camp solitaire LG UHC"
+                },
+              ]
+            }
+          },
+          {
+            content: "récupération des logs : les logs sont récupérés via un bot lors de la fermeture du jeupour les installer dans l'application jusqu'à un futur traitement au lancement de l'application. Il est important d'utiliser curseforge ou vanilla pour récupérer des logs qui ne soit pas corrompus.",
+            mise_en_page: 1,
+            images: {
+              create: [
+                {
+                  url: "/images/projects/proj_uhcworld/loup_thierces_logo.png",
+                  alt: "Logo loup de thierces lieux"
+                },
+              ]
+            }
+          },
+
+          {
+            content: "traitement des logs : les logs sont traités en multithreadingpour en extraire les informations importantes telles que les le rôle joué, les évènements vécus et la victoire. Tout mes teste sont fais avec des REGEX mais pour optimiser les calculs, j'ai enlevé les calculs que la machine n'est pas sensé faire selon le rôle.",
+            mise_en_page: 1,
+          },
+
+          {
+            content: "structure de données : Les données traités sont organisés dans une base de données SQLite pour permettre une consultation rapide et efficace des statistiques du joueur. J'ai choisi d'utiliser SQLite pour sa simplicité et sa légèreté, ce qui est idéal pour une application de ce type. La base de données est conçue pour stocker les informations localement sans avoir à lancer de serveurs.",
+            mise_en_page: 0,
+            images: {
+              create: [
+                {
+                  url: "/images/projects/proj_uhcworld/diagramme_base_de_donnee_LGUHC.png",
+                  alt: "Logo loup de thierces lieux"
+                },
               ]
             }
           }
